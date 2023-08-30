@@ -13,21 +13,15 @@ MODULE_PATH := umm_libc
 MODULE      := umm_libc
 
 # ----------------------------------------------------------------------------
-# Make sure that we have source files to support the MCU, MCUVAR, and BOARD
-
-# SUPPORTED_MCU    := arm7tdmi
-# SUPPORTED_MCUVAR := AT91SAM7S256
-# SUPPORTED_BOARD  := NXT
-
-# $(call check-module-support,MCU,$(SUPPORTED_MCU))
-# $(call check-module-support,MCUVAR,$(SUPPORTED_MCUVAR))
-# $(call check-module-support,BOARD,$(SUPPORTED_BOARD))
-
+# Source file lists go here, C dependencies are automatically generated
+# by the compiler using the -m option
+#
+# You can set up a common source path late in the file
+#
+# Note that each module gets its own, privately scoped variable for building
 # ----------------------------------------------------------------------------
-# Source file lists go here
-# C dependencies are automatically generated
-# Use file-extension c for c-only-files
-# ----------------------------------------------------------------------------
+
+# We need both else a previous definition is used :-) Can we make this an include?
 
 SRC_C :=  
 SRC_ASM :=  
@@ -128,40 +122,30 @@ SRC_C += mathf/tanf.c
 #SRC_C += misc/umm_malloc.c
 
 # ----------------------------------------------------------------------------
-# These objects must be compiled with -O2 so that the copmiler does not get
-# too aggressive
-
-SRC_THUMB_O2 :=
-
-# ----------------------------------------------------------------------------
-# List object files that must be compiled in ARM mode here
-
-SRC_ARM :=
-
-# ----------------------------------------------------------------------------
 # Set up the module level specifics for the source, include, and object paths
 
 $(MODULE)_SRCPATH :=
-$(MODULE)_SRCPATH += $(MODULE)/ansi
-$(MODULE)_SRCPATH += $(MODULE)/math
-$(MODULE)_SRCPATH += $(MODULE)/mathf
-$(MODULE)_SRCPATH += $(MODULE)/stdio
-$(MODULE)_SRCPATH += $(MODULE)/misc
+$(MODULE)_SRCPATH += $(SRC_PATH)/$(MODULE_PATH)/ansi
+$(MODULE)_SRCPATH += $(SRC_PATH)/$(MODULE_PATH)/math
+$(MODULE)_SRCPATH += $(SRC_PATH)/$(MODULE_PATH)/mathf
+$(MODULE)_SRCPATH += $(SRC_PATH)/$(MODULE_PATH)/stdio
+$(MODULE)_SRCPATH += $(SRC_PATH)/$(MODULE_PATH)/misc
 
-$(MODULE)_INCPATH := $(MODULE)/include
-$(MODULE)_INCPATH += $(MODULE)/math
-$(MODULE)_INCPATH += $(MODULE)/mathf
-$(MODULE)_INCPATH += $(MODULE)/stdio
-$(MODULE)_INCPATH += $(MODULE)/misc
+$(MODULE)_INCPATH := $(SRC_PATH)/$(MODULE_PATH)/include
+$(MODULE)_INCPATH += $(SRC_PATH)/$(MODULE_PATH)/math
+$(MODULE)_INCPATH += $(SRC_PATH)/$(MODULE_PATH)/mathf
+$(MODULE)_INCPATH += $(SRC_PATH)/$(MODULE_PATH)/stdio
+$(MODULE)_INCPATH += $(SRC_PATH)/$(MODULE_PATH)/misc
 
-# $(MODULE)_INCPATH += nxtFirmware/$(MCUVAR)/Source
+# ----------------------------------------------------------------------------
+# Set any module level compile time defaults here
 
 $(MODULE)_CDEFS :=
 $(MODULE)_CDEFS += -D_SYSTEM
-# ----------------------------------------------------------------------------
-# The following includes are done to do stuff like specify the library
-# to build for this module...
 
-include $(ADAPTABUILD_PATH)/make/adaptabuild_library.mak
+# ----------------------------------------------------------------------------
+# Include the adaptabuild library makefile - must be done for each module!
+
+include $(ADAPTABUILD_PATH)/make/library.mak
 
 # ----------------------------------------------------------------------------
