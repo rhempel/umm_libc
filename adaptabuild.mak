@@ -132,16 +132,15 @@ $(MODULE)_SRCPATH += $(SRC_PATH)/$(MODULE_PATH)/stdio
 $(MODULE)_SRCPATH += $(SRC_PATH)/$(MODULE_PATH)/misc
 
 $(MODULE)_INCPATH := $(SRC_PATH)/$(MODULE_PATH)/include
-$(MODULE)_INCPATH += $(SRC_PATH)/$(MODULE_PATH)/math
-$(MODULE)_INCPATH += $(SRC_PATH)/$(MODULE_PATH)/mathf
-$(MODULE)_INCPATH += $(SRC_PATH)/$(MODULE_PATH)/stdio
-$(MODULE)_INCPATH += $(SRC_PATH)/$(MODULE_PATH)/misc
 
 # ----------------------------------------------------------------------------
 # Set any module level compile time defaults here
 
 $(MODULE)_CDEFS :=
 $(MODULE)_CDEFS += -D_SYSTEM
+
+$(MODULE)_CFLAGS :=
+$(MODULE)_CFLAGS += -nostdinc -Wno-builtin-declaration-mismatch
 
 # ----------------------------------------------------------------------------
 # Include the adaptabuild library makefile - must be done for each module!

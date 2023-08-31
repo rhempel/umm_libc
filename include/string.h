@@ -35,6 +35,7 @@ _PROTOTYPE( char *strerror, (int _errnum)				);
 _PROTOTYPE( size_t strlen, (const char *_s)				);
 _PROTOTYPE( char *strncat, (char *_s1, const char *_s2, size_t _n)	);
 _PROTOTYPE( char *strncpy, (char *_s1, const char *_s2, size_t _n)	);
+_PROTOTYPE( size_t strnlen, (const char *_s, size_t _n)			);
 _PROTOTYPE( char *strpbrk, (const char *_s1, const char *_s2)		);
 _PROTOTYPE( char *strrchr, (const char *_s, int _c)			);
 _PROTOTYPE( size_t strspn, (const char *_s1, const char *_s2)		);
@@ -61,7 +62,6 @@ _PROTOTYPE( void *memccpy, (char *_dst, const char *_src, int _ucharstop,
 _PROTOTYPE( int strcasecmp, (const char *_s1, const char *_s2)		);
 _PROTOTYPE( int strncasecmp, (const char *_s1, const char *_s2,
 							size_t _len)	);
-_PROTOTYPE( size_t strnlen, (const char *_s, size_t _n)			);
 #endif
 
 #endif /* _STRING_H */
