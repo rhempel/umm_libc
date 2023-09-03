@@ -137,7 +137,7 @@ $(MODULE)_INCPATH := $(SRC_PATH)/$(MODULE_PATH)/include
 # Set any module level compile time defaults here
 
 $(MODULE)_CDEFS :=
-$(MODULE)_CDEFS += -D_SYSTEM
+$(MODULE)_CDEFS += _SYSTEM
 
 $(MODULE)_CFLAGS :=
 $(MODULE)_CFLAGS += -nostdinc -Wno-builtin-declaration-mismatch
