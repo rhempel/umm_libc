@@ -119,7 +119,6 @@ SRC_C += mathf/tanf.c
                                       
 #SRC_C += misc/xmodem.c
 #SRC_C += misc/checksums.c
-#SRC_C += misc/umm_malloc.c
 
 # ----------------------------------------------------------------------------
 # Set up the module level specifics for the source, include, and object paths
