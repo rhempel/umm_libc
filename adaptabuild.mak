@@ -9,8 +9,10 @@
 # Managing Projects with GNU Make - Robert Mecklenburg - ISBN 0-596-00610-1
 # ----------------------------------------------------------------------------
 
-MODULE_PATH := umm_libc
-MODULE      := umm_libc
+MODULE := umm_libc
+$(info MODULE is $(MODULE))
+MODULE_PATH := $(call make_current_module_path)
+$(info MODULE_PATH is $(MODULE_PATH))
 
 # ----------------------------------------------------------------------------
 # Source file lists go here, C dependencies are automatically generated
@@ -122,15 +124,22 @@ SRC_C += mathf/tanf.c
 
 # ----------------------------------------------------------------------------
 # Set up the module level specifics for the source, include, and object paths
+#
+# Note that we use the $(MODULE_PATH) prefix for symmetry with $(MODULE)_INCPATH
+#      because there are sometimes include paths outside our module we must
+#      refer to
 
 $(MODULE)_SRCPATH :=
-$(MODULE)_SRCPATH += $(SRC_PATH)/$(MODULE_PATH)/ansi
-$(MODULE)_SRCPATH += $(SRC_PATH)/$(MODULE_PATH)/math
-$(MODULE)_SRCPATH += $(SRC_PATH)/$(MODULE_PATH)/mathf
-$(MODULE)_SRCPATH += $(SRC_PATH)/$(MODULE_PATH)/stdio
-$(MODULE)_SRCPATH += $(SRC_PATH)/$(MODULE_PATH)/misc
+$(MODULE)_SRCPATH += ansi
+$(MODULE)_SRCPATH += math
+$(MODULE)_SRCPATH += mathf
+$(MODULE)_SRCPATH += stdio
+$(MODULE)_SRCPATH += misc
 
-$(MODULE)_INCPATH := $(SRC_PATH)/$(MODULE_PATH)/include
+$(MODULE)_INCPATH :=
+$(MODULE)_INCPATH += include
+
+$(MODULE)_ROOT_INCPATH :=
 
 # ----------------------------------------------------------------------------
 # Set any module level compile time defaults here
