@@ -10,9 +10,13 @@
 # ----------------------------------------------------------------------------
 
 MODULE := umm_libc
+
 $(info MODULE is $(MODULE))
 MODULE_PATH := $(call make_current_module_path)
 $(info MODULE_PATH is $(MODULE_PATH))
+
+$(MODULE)_PATH := $(MODULE_PATH)
+$(info $(MODULE)_PATH is $($(MODULE)_PATH))
 
 # ----------------------------------------------------------------------------
 # Source file lists go here, C dependencies are automatically generated
@@ -123,23 +127,16 @@ SRC_C += mathf/tanf.c
 #SRC_C += misc/checksums.c
 
 # ----------------------------------------------------------------------------
-# Set up the module level specifics for the source, include, and object paths
-#
-# Note that we use the $(MODULE_PATH) prefix for symmetry with $(MODULE)_INCPATH
-#      because there are sometimes include paths outside our module we must
-#      refer to
+# Set up the module level source and include paths
 
 $(MODULE)_SRCPATH :=
-$(MODULE)_SRCPATH += ansi
-$(MODULE)_SRCPATH += math
-$(MODULE)_SRCPATH += mathf
-$(MODULE)_SRCPATH += stdio
-$(MODULE)_SRCPATH += misc
+$(MODULE)_SRCPATH += $(MODULE_PATH)/ansi
+$(MODULE)_SRCPATH += $(MODULE_PATH)/math
+$(MODULE)_SRCPATH += $(MODULE_PATH)/mathf
+$(MODULE)_SRCPATH += $(MODULE_PATH)/stdio
+$(MODULE)_SRCPATH += $(MODULE_PATH)/misc
 
-$(MODULE)_INCPATH :=
-$(MODULE)_INCPATH += include
-
-$(MODULE)_ROOT_INCPATH :=
+$(MODULE)_INCPATH := $(MODULE_PATH)/include
 
 # ----------------------------------------------------------------------------
 # Set any module level compile time defaults here
