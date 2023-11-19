@@ -11,12 +11,11 @@
 
 MODULE := umm_libc
 
-$(info MODULE is $(MODULE))
 MODULE_PATH := $(call make_current_module_path)
-$(info MODULE_PATH is $(MODULE_PATH))
+# $(info MODULE_PATH is $(MODULE_PATH))
 
 $(MODULE)_PATH := $(MODULE_PATH)
-$(info $(MODULE)_PATH is $($(MODULE)_PATH))
+# $(info $(MODULE)_PATH is $($(MODULE)_PATH))
 
 # ----------------------------------------------------------------------------
 # Source file lists go here, C dependencies are automatically generated
