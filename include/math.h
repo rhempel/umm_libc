@@ -21,6 +21,10 @@
 #ifndef _INC_MATH
 #define _INC_MATH
 
+#include <stdint.h>
+
+typedef float float_t;
+
 #define PI          3.1415926536
 #define TWO_PI      6.2831853071
 #define HALF_PI     1.5707963268
