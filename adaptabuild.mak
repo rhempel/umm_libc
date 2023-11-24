@@ -144,7 +144,13 @@ $(MODULE)_CDEFS :=
 $(MODULE)_CDEFS += _SYSTEM
 
 $(MODULE)_CFLAGS :=
-$(MODULE)_CFLAGS += -nostdinc -Wno-builtin-declaration-mismatch
+$(MODULE)_CFLAGS += -Wno-builtin-declaration-mismatch
+
+#ifeq (host,$(MCU))
+#    # Do nothing - we want the standard library for host builds
+#else
+#    $(MODULE)_CFLAGS += -nostdinc
+#endif
 
 # ----------------------------------------------------------------------------
 # Include the adaptabuild library makefile - must be done for each module!
