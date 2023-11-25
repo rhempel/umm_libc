@@ -97,6 +97,7 @@ typedef int (*__compar_fn_t)(const void *, const void *);
 
 #endif
 
+#ifdef __DOXYGEN__
 extern __inline__ void abort(void) __ATTR_NORETURN__;
 
 /** The abort() function causes abnormal program termination to occur.
@@ -107,6 +108,9 @@ abort(void)
 {
 	for (;;);
 }
+#else
+extern abort(const char *) __ATTR_NORETURN__;
+#endif
 
 /** The abs() function computes the absolute value of the integer \c i.
    \note The abs() and labs() functions are builtins of gcc.
@@ -252,12 +256,17 @@ extern unsigned long strtoul(const char *__nptr, char **__endptr, int __base);
 
            \code strtol(nptr, (char **)NULL, 10); \endcode
 */
+#ifdef __DOXYGEN__
 extern __inline__ long atol(const char *__nptr) __ATTR_PURE__;
 extern __inline__ long
 atol(const char *__nptr)
 {
 	return strtol(__nptr, (char **) 0, 10);
 }
+#else
+/* optimized asm version, much smaller if strtol() not used elsewhere */
+extern long atol(const char *) __ATTR_PURE__;
+#endif
 
 /**
     The atoi() function converts the initial portion of the string
@@ -592,7 +601,7 @@ extern long random_r(unsigned long *ctx);
    an ASCII representation that will be stored under \c s.  The caller
    is responsible for providing sufficient storage in \c s.
 
-   Conversion is done in the format \c "[-]d.ddde±dd" where there is
+   Conversion is done in the format \c "[-]d.dddeï¿½dd" where there is
    one digit before the decimal-point character and the number of
    digits after it is equal to the precision \c prec; if the precision
    is zero, no decimal-point character appears.  If \c flags has the
