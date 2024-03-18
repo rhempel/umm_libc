@@ -109,7 +109,7 @@ abort(void)
 	for (;;);
 }
 #else
-extern abort(const char *) __ATTR_NORETURN__;
+extern void abort(const char *) __ATTR_NORETURN__;
 #endif
 
 /** The abs() function computes the absolute value of the integer \c i.
