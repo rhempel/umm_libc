@@ -28,11 +28,13 @@
 #define	__str(x)	# x
 #define	__xstr(x)	__str(x)
 
-_PROTOTYPE( void __bad_assertion, (const char *_mess) );
-#define	assert(expr)	((expr)? (void)0 : \
-				__bad_assertion("Assertion \"" #expr \
-				    "\" failed, file " __xstr(__FILE__) \
-				    ", line " __xstr(__LINE__) "\n"))
+#define assert(expr) {((void) ((expr) ? 0 : __assert_func( __FILE__,  __LINE__, "", "")));}
+
+//_PROTOTYPE( void __bad_assertion, (const char *_mess) );
+//#define	assert(expr)	{((expr)? (void)0 : \
+//				__bad_assertion("Assertion \"" #expr \
+//				    "\" failed, file " __xstr(__FILE__) \
+//				    ", line " __xstr(__LINE__) "\n"));}
 #else
 #define assert(expr) ((void) ((expr) ? 0 : __assert( __FILE__,  __LINE__)))
 #endif /* _ANSI */

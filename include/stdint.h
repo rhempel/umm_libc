@@ -132,12 +132,13 @@ typedef unsigned int uint64_t __attribute__((__mode__(__DI__)));
 /** \ingroup avr_stdint
     Signed pointer compatible type. */
 
-typedef int16_t intptr_t;
+/* TODO: THIS MUST BE ADJUSTED FOR MAXIMUM INT SIZE! */
+typedef uint32_t intptr_t;
 
 /** \ingroup avr_stdint
     Unsigned pointer compatible type. */
 
-typedef uint16_t uintptr_t;
+typedef uint32_t uintptr_t;
 
 /*@}*/
 
