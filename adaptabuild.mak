@@ -126,16 +126,10 @@ SRC_C += mathf/tanf.c
 #SRC_C += misc/checksums.c
 
 # ----------------------------------------------------------------------------
-# Set up the module level source and include paths
+# Set up the module level include path
 
-$(MODULE)_SRCPATH :=
-$(MODULE)_SRCPATH += $(MODULE_PATH)/ansi
-$(MODULE)_SRCPATH += $(MODULE_PATH)/math
-$(MODULE)_SRCPATH += $(MODULE_PATH)/mathf
-$(MODULE)_SRCPATH += $(MODULE_PATH)/stdio
-$(MODULE)_SRCPATH += $(MODULE_PATH)/misc
-
-$(MODULE)_INCPATH := $(MODULE_PATH)/include
+$(MODULE)_INCPATH :=
+$(MODULE)_INCPATH += $(MODULE_PATH)/include
 
 # ----------------------------------------------------------------------------
 # Set any module level compile time defaults here
